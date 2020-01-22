@@ -1,7 +1,10 @@
-﻿using sInference.Contracts;
+﻿using DNI.Shared.Shared.Extensions;
+using sInference.Contracts;
 using sInference.Enumerations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace sInference
@@ -45,6 +48,15 @@ namespace sInference
 
             Console.WriteLine(_smartCard
                 .Input(SmartCardData.Create(Code.Connect, Pin.Send, stripe)));
+
+            Console.WriteLine(_smartCard
+                .Input(SmartCardData.Create(Code.BeginTransmit, Pin.Recieve, stripe)));
+
+            Console.WriteLine(_smartCard
+                .Input(SmartCardData.Create(Code.BinaryTransmit, Pin.Recieve, stripe, "MyTestData".GetBytes(Encoding.ASCII).ToArray() )));
+
+            Console.WriteLine(_smartCard
+                .Input(SmartCardData.Create(Code.BinaryTransmit, Pin.Recieve, stripe, "MyTestData next bit".GetBytes(Encoding.ASCII).ToArray() )));
 
             Console.WriteLine(_smartCard
                 .Input(SmartCardData.Create(Code.Disconnect, Pin.Send, stripe)));
