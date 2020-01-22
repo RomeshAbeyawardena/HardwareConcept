@@ -1,6 +1,5 @@
 ﻿using DNI.Shared.Shared.Extensions;
 using sInference.Contracts;
-using sInference.Contracts.Handlers;
 using sInference.Enumerations;
 using System.Linq;
 
@@ -8,8 +7,7 @@ namespace sInference.Services
 {
     public class RecievePinService : PinBaseService
     {
-        public RecievePinService(ISmartCardStateHandler smartCardStateHandler)
-            : base(smartCardStateHandler)
+        public RecievePinService()
         {
             PinServiceHandleSwitch
                 .CaseWhen(Code.BeginTransmit, BeginTransmit)

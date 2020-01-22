@@ -15,6 +15,14 @@ namespace sInference
         public Pin PinType => GetPin(Pin);
         public Result ResultType => GetResult(Result.Result);
 
+        public override string ToString()
+        {
+            return string.Format("Pin: {0}\t\tCode: {1}\t\tResult:{2}", 
+                GetPin(Pin), 
+                GetCode(Code), 
+                GetResult(Result.Result));
+        }
+
         private SmartCardData(long code, byte pin, char[] stripe = null, byte[] data = null)
         {
             Code = code;

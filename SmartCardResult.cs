@@ -35,5 +35,13 @@ namespace sInference
             return new SmartCardResult(pin, code, result);
         }
 
+        public override string ToString()
+        {
+            return string.Format("Pin: {0} Code: {1} Result:{2}", 
+                SmartCardData.GetPin(Pin), 
+                SmartCardData.GetCode(Code), 
+                SmartCardData.GetResult(Result));
+        }
+
     }
 }

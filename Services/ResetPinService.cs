@@ -1,5 +1,4 @@
 ﻿using sInference.Contracts;
-using sInference.Contracts.Handlers;
 using sInference.Enumerations;
 using System;
 
@@ -7,8 +6,7 @@ namespace sInference.Services
 {
     public class ResetPinService : PinBaseService
     {
-        public ResetPinService(ISmartCardStateHandler smartCardStateHandler)
-            : base(smartCardStateHandler)
+        public ResetPinService()
         {
             PinServiceHandleSwitch.CaseWhen(Code.Request, RequestReset);
         }

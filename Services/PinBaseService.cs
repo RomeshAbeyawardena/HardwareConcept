@@ -5,7 +5,6 @@ using DNI.Shared.Contracts;
 using DNI.Shared.Services;
 using sInference.Contracts;
 using sInference.Enumerations;
-using sInference.Contracts.Handlers;
 
 namespace sInference.Services
 {
@@ -22,9 +21,8 @@ namespace sInference.Services
             return action.Invoke(smartCardState, cardData);
         }
 
-        protected PinBaseService(ISmartCardStateHandler smartCardStateHandler)
+        protected PinBaseService()
         {
-            SmartCardStateHandler = smartCardStateHandler;
             PinServiceHandleSwitch = Switch
                 .Create<Code, Func<ISmartCardState, ISmartCardData, IResult>>();
         }
@@ -35,7 +33,6 @@ namespace sInference.Services
                 && smartCardState.Stripe.SequenceEqual(smartCard.Stripe);
         }
 
-        protected ISmartCardStateHandler SmartCardStateHandler;
         protected ISwitch<Code, Func<ISmartCardState, ISmartCardData, IResult>> PinServiceHandleSwitch { get; }
     }
 }
