@@ -1,4 +1,5 @@
-﻿using sInference.Contracts;
+﻿using DNI.Shared.Shared.Extensions;
+using sInference.Contracts;
 using sInference.Contracts.Factories;
 using sInference.Enumerations;
 
@@ -12,26 +13,26 @@ namespace sInference
         public SmartCard(IPinServiceFactory pinServiceFactory)
         {
             _smartCardState = new DefaultSmartCardState();
-            _smartCardState.Authenticated += _smartCardState_Authenticated;
-            _smartCardState.Connected += _smartCardState_Connected;
-            _smartCardState.Transmitting += _smartCardState_Transmitting;
+            _smartCardState.Authenticated += smartCardState_Authenticated;
+            _smartCardState.Connected += smartCardState_Connected;
+            _smartCardState.Transmitting += SmartCardState_Transmitting;
 
             _pinServiceFactory = pinServiceFactory;
         }
 
-        private void _smartCardState_Transmitting(object sender, System.EventArgs e)
+        private void SmartCardState_Transmitting(object sender, SmartCardEventArgs e)
         {
-            throw new System.NotImplementedException();
+            Transmitting.InvokeIfAssigned(sender, e);
         }
 
-        private void _smartCardState_Connected(object sender, System.EventArgs e)
+        private void smartCardState_Connected(object sender, SmartCardEventArgs e)
         {
-            throw new System.NotImplementedException();
+            Connected.InvokeIfAssigned(sender, e);
         }
 
-        private void _smartCardState_Authenticated(object sender, System.EventArgs e)
+        private void smartCardState_Authenticated(object sender, SmartCardEventArgs e)
         {
-            throw new System.NotImplementedException();
+            Authenticated.InvokeIfAssigned(sender, e);
         }
 
         public ISmartCardData Input(ISmartCardData cardData)

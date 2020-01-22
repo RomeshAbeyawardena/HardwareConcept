@@ -18,19 +18,19 @@ namespace sInference
             _smartCard.Transmitting += _smartCard_Transmitting;
         }
 
-        private void _smartCard_Transmitting(object sender, EventArgs e)
+        private void _smartCard_Transmitting(object sender, SmartCardEventArgs e)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("{0} transmitting = {1}", string.Join('-',e.State.Stripe), e.StateResult);
         }
 
-        private void _smartCard_Connected(object sender, EventArgs e)
+        private void _smartCard_Connected(object sender, SmartCardEventArgs e)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("{0} connected = {1}", string.Join('-',e.State.Stripe), e.StateResult);
         }
 
-        private void _smartCard_Authenticated(object sender, EventArgs e)
+        private void _smartCard_Authenticated(object sender, SmartCardEventArgs e)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("{0} authenticated", string.Join('-',e.State.Stripe));
         }
 
         public async Task Begin(IEnumerable<object> args)
@@ -45,6 +45,9 @@ namespace sInference
 
             Console.WriteLine(_smartCard
                 .Input(SmartCardData.Create(Code.Connect, Pin.Send, stripe)));
+
+            Console.WriteLine(_smartCard
+                .Input(SmartCardData.Create(Code.Disconnect, Pin.Send, stripe)));
 
             Console.WriteLine(_smartCard
                 .Input(SmartCardData.Create(Code.Request, Pin.Reset, stripe)));

@@ -5,9 +5,9 @@ namespace sInference.Contracts
 {
     public interface ISmartCardState
     {
-        event EventHandler Authenticated;
-        event EventHandler Connected;
-        event EventHandler Transmitting;
+        event EventHandler<SmartCardEventArgs> Authenticated;
+        event EventHandler<SmartCardEventArgs> Connected;
+        event EventHandler<SmartCardEventArgs> Transmitting;
         public bool IsConnected { get; set; }
         public IEnumerable<char> Stripe { get; set; }
         public bool IsTransmitting { get; set; }

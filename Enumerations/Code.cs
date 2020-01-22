@@ -3,6 +3,7 @@
     public enum Code
     {
         Connect = 100,
+        Disconnect = 120,
         Accepted = 200,
         Rejected = 400,
         Error = 500,
